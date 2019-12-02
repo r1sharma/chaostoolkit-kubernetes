@@ -16,7 +16,7 @@
         "tolerance": 200,
         "provider": {
           "type": "http",
-          "url": "http://192.168.64.6:32407/",
+          "url": "http://192.168.64.6:31422/",
           "timeout": 3
         }
       },
@@ -34,19 +34,6 @@
             "ns": "default"
           }
         }
-      },
-      {
-        "name": "count-pods",
-        "type": "probe",
-        "tolerance": true,
-        "provider": {
-          "arguments": {
-            "label_selector": "app=sample-app-deployment"
-          },
-          "type": "python",
-          "module": "chaosk8s.pod.probes",
-          "func": "count_pods"
-        }
       }
     ]
   },
@@ -59,7 +46,7 @@
         "module": "chaosk8s.actions",
         "func": "kill_microservice",
         "arguments": {
-          "name": "sample-app-deployment",
+          "name": "app=sample-app-deployment",
           "ns": "default"
         }
       }
