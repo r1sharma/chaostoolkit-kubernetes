@@ -29,6 +29,7 @@
           "module": "chaosk8s.pod.probes",
           "func": "pods_in_phase",
           "arguments": {
+            #tried below with both app="sample-app-deployment" & only "sample-app-deployment"
             "label_selector": "app=sample-app-deployment",
             "phase": "Running",
             "ns": "default"
