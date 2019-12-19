@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: sample
-          image: sample:1.2
+          image: sample-app:1.0
           ports:
             - name: sample-port
               containerPort: 8080

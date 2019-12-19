@@ -1,0 +1,8 @@
+commonLabels:
+  app: sample-app-chaos
+
+resources:
+  - deployment-app.yml
+  - service-app.yml
+  - deployment-chaos.yml
+  - services-chaos.yml

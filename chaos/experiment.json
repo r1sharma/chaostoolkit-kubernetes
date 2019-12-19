@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "title": "My application is resilient to admin-instigated node drainage",
-  "description": "Can my application maintain its minimum resources?",
+  "title": "My application is resilient to admin-instigated api drainage",
+  "description": "Can my micro service maintain its minimum resources?",
   "tags": [
     "service",
     "kubernetes",
@@ -16,7 +16,7 @@
         "tolerance": 200,
         "provider": {
           "type": "http",
-          "url": "http://192.168.64.6:31422/",
+          "url": "http://192.168.64.2:31516",
           "timeout": 3
         }
       },
@@ -34,21 +34,35 @@
             "ns": "default"
           }
         }
+      },
+      {
+        "name": "count-pods",
+        "type": "probe",
+        "tolerance": 1,
+        "provider": {
+          "arguments": {
+            "label_selector": "app=sample-app-deployment"
+          },
+          "type": "python",
+          "module": "chaosk8s.pod.probes",
+          "func": "count_pods"
+        }
       }
     ]
   },
   "method": [
     {
+      "name": "terminate-pods",
       "type": "action",
-      "name": "stop-service",
+      "tolerance": true,
       "provider": {
-        "type": "python",
-        "module": "chaosk8s.actions",
-        "func": "kill_microservice",
         "arguments": {
-          "name": "app=sample-app-deployment",
-          "ns": "default"
-        }
+          "label_selector": "app=sample-app-deployment",
+          "qty": 1
+        },
+        "type": "python",
+        "module": "chaosk8s.pod.actions",
+        "func": "terminate_pods"
       }
     }
   ],

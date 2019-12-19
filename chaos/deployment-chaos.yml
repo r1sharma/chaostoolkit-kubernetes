@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaos-toolkit-dep
+  labels:
+    app: chaos-toolkit-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chaos-toolkit-dep
+  template:
+    metadata:
+      labels:
+        app: chaos-toolkit-dep
+    spec:
+      containers:
+        - name: chaostk
+          image: chaostk:1.0
+          ports:
+            - name: chaostk-port
+              containerPort: 8081

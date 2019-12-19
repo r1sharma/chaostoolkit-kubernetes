@@ -1,0 +1,3 @@
+chaostoolkit
+chaostoolkit-kubernetes
+jsonpath2
